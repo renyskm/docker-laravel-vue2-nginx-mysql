@@ -33,7 +33,17 @@ class User extends Authenticatable
      *
      * @var array
      */
+    // キャストを行う対象のカラム
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * リレーションシップ - photosテーブル
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function photos()
+    {
+        return $this->hasMany('App\Photo');
+    }
 }

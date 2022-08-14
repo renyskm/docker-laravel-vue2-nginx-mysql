@@ -19,7 +19,12 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+            /*
+                RedirectIfAuthenticated ミドルウェアによって、ログイン状態で非ログイン状態でのみアクセスできる機能にリクエストを送信した場合に /home へのリダイレクトが返却されています。
+                SPA 的にはページへのリダイレクト（HTML）が返るのは相応しくないので、先ほど作成したログインユーザー返却 API にリダイレクトするように修正しましょう。
+            */
+            //return redirect(RouteServiceProvider::HOME);
+            return redirect()->route('user');
         }
 
         return $next($request);

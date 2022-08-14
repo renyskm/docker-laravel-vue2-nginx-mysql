@@ -39,6 +39,11 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        /*
+            web とくらべて api はずいぶんすっきりしていますね。api ミドルウェアグループでは本来、
+            外部のアプリケーションから呼び出されるようなステートレスな Web API（Twitter API や Google Map API などをイメージしてください）が想定されているので、
+            セッションやクッキー、CSRF トークンを扱うミドルウェアが含まれていません
+        */
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,

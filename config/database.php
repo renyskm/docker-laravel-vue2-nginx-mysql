@@ -91,6 +91,13 @@ return [
             'prefix_indexes' => true,
         ],
 
+        // インメモリの SQLite を利用するのでテスト実行が終わると消去され無駄なデータが残りません。
+        'sqlite_testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ],
+
     ],
 
     /*
